@@ -9,7 +9,7 @@ end
 
 unimrcp_name = "uni-ast-package-#{node['unimrcp']['version']}"
 work_dir = Chef::Config['file_cache_path'] || '/tmp'
-unimrcp_src_dir = "#{work_dir}/#{unimrcp_name}"
+node['unimrcp']['src_dir'] = unimrcp_src_dir = "#{work_dir}/#{unimrcp_name}"
 
 target_dir = node['unimrcp']['install_dir']
 
