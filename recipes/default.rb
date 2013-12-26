@@ -77,5 +77,5 @@ bash "ldconfig" do
   user "root"
   cwd unimrcp_src_dir
   code 'ldconfig'
-  not_if check_module
+  not_if check_installed
 end
