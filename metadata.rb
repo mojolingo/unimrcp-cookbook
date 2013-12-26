@@ -8,5 +8,7 @@ version          '0.1.0'
 
 recipe 'unimrcp', 'Install UniMRCP'
 
+depends 'apt', '~> 2.2'
+
 supports 'debian', '>= 7.1'
 supports 'ubuntu', '>= 10.04'

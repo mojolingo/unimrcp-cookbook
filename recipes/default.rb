@@ -1,3 +1,5 @@
+include_recipe 'apt'
+
 case node['platform']
 when "ubuntu", "debian"
   node['unimrcp']['packages'].each do |pkg|
