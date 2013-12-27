@@ -17,7 +17,7 @@ target_dir = node['unimrcp']['install_dir']
 
 apr_src_dir = "#{unimrcp_src_dir}/unimrcp/libs/apr"
 
-check_installed = 'test -f /usr/local/unimrcp/lib/libunimrcpclient.a'
+check_installed = "test -f #{target_dir}/lib/libunimrcpclient.a"
 
 configure_line = "./configure --prefix=#{target_dir} --with-apr=#{target_dir} --with-apr-util=#{target_dir}"
 
@@ -53,7 +53,7 @@ bash "install_apr" do
     make
     make install
   EOH
-  not_if 'test -f /usr/local/unimrcp/lib/libapr-1.a'
+  not_if "test -f #{target_dir}/lib/libapr-1.a"
 end
 
 bash "install_apr_util" do
@@ -64,7 +64,7 @@ bash "install_apr_util" do
     make
     make install
   EOH
-  not_if 'test -f /usr/local/unimrcp/lib/libaprutil-1.a'
+  not_if "test -f #{target_dir}/lib/libaprutil-1.a"
 end
 
 bash "install_sofia" do
