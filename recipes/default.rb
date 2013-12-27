@@ -19,6 +19,20 @@ apr_src_dir = "#{unimrcp_src_dir}/unimrcp/libs/apr"
 
 check_installed = 'test -f /usr/local/unimrcp/lib/libunimrcpclient.a'
 
+configure_line = "./configure --prefix=#{target_dir} --with-apr=#{target_dir} --with-apr-util=#{target_dir}"
+
+if node['unimrcp']['install_flite']
+  include_recipe 'unimrcp::flite'
+  configure_line << " --enable-flite-plugin --with-flite=#{File.join(work_dir, 'flite-1.3.99')}"
+  check_installed << " && test -f #{target_dir}/plugin/mrcpflite.so"
+end
+
+if node['unimrcp']['install_pocketsphinx']
+  include_recipe 'unimrcp::pocketsphinx'
+  configure_line << " --enable-pocketsphinx-plugin --with-pocketsphinx=#{File.join(work_dir, 'pocketsphinx-0.5.99')} --with-sphinxbase=#{File.join(work_dir, 'sphinxbase-0.4.99')}"
+  check_installed << " && test -f #{target_dir}/plugin/mrcppocketsphinx.so"
+end
+
 remote_file "#{work_dir}/#{unimrcp_name}.tar.gz" do
   source "http://unimrcp.googlecode.com/files/#{unimrcp_name}.tar.gz"
   not_if check_installed
@@ -68,7 +82,7 @@ bash "install_unimrcp" do
   user "root"
   cwd "#{unimrcp_src_dir}/unimrcp"
   code <<-EOH
-    ./configure --prefix=#{target_dir} --with-apr=#{target_dir} --with-apr-util=#{target_dir}
+    #{configure_line}
     make
     make install
   EOH

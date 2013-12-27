@@ -23,3 +23,17 @@ suites:
   attributes: {
     unimrcp: {}
   }
+- name: flite
+  run_list: ['recipe[unimrcp]']
+  attributes: {
+    unimrcp: {
+      install_flite: true
+    }
+  }
+- name: pocketsphinx
+  run_list: ['recipe[unimrcp]']
+  attributes: {
+    unimrcp: {
+      install_pocketsphinx: true
+    }
+  }
