@@ -89,6 +89,20 @@ bash "install_unimrcp" do
   not_if check_installed
 end
 
+if node['unimrcp']['install_pocketsphinx']
+  remote_file "#{work_dir}/communicator.tar.gz" do
+    source "http://www.unimrcp.org/dependencies/communicator_semi_6000_20080321.tar.gz"
+    not_if "test -d #{target_dir}/data/Communicator_semi_40.cd_semi_6000"
+    notifies :run, 'bash[extract_pocketsphinx_communicator]', :immediately
+  end
+
+  bash "extract_pocketsphinx_communicator" do
+    cwd work_dir
+    code "tar --extract --file communicator.tar.gz --directory #{target_dir}/data"
+    action :nothing
+  end
+end
+
 bash "ldconfig" do
   user "root"
   code 'ldconfig'
