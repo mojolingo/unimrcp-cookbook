@@ -91,8 +91,9 @@ end
 
 if node['unimrcp']['install_pocketsphinx']
   remote_file "#{work_dir}/communicator.tar.gz" do
-    source "http://www.unimrcp.org/dependencies/communicator_semi_6000_20080321.tar.gz"
+    source "http://files.freeswitch.org/downloads/libs/communicator_semi_6000_20080321.tar.gz"
     not_if "test -d #{target_dir}/data/Communicator_semi_40.cd_semi_6000"
+    retries 10
     notifies :run, 'bash[extract_pocketsphinx_communicator]', :immediately
   end
 
