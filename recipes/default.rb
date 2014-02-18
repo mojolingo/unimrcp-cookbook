@@ -29,7 +29,7 @@ end
 
 if node['unimrcp']['install_pocketsphinx']
   include_recipe 'unimrcp::pocketsphinx'
-  configure_line << " --enable-pocketsphinx-plugin --with-pocketsphinx=#{File.join(work_dir, 'pocketsphinx-0.5.99')} --with-sphinxbase=#{File.join(work_dir, 'sphinxbase-0.4.99')}"
+  configure_line << " --enable-pocketsphinx-plugin --with-pocketsphinx=#{File.join(work_dir, 'pocketsphinx-0.8')} --with-sphinxbase=#{File.join(work_dir, 'sphinxbase-0.8')}"
   check_installed << " && test -f #{target_dir}/plugin/mrcppocketsphinx.so"
 end
 
