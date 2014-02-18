@@ -90,6 +90,7 @@ if node['unimrcp']['install_pocketsphinx']
     source "http://files.freeswitch.org/downloads/libs/communicator_semi_6000_20080321.tar.gz"
     not_if "test -d #{target_dir}/data/Communicator_semi_40.cd_semi_6000"
     retries 10
+    checksum '504941aa35924af84cee1bf61914d923'
     notifies :run, 'bash[extract_pocketsphinx_communicator]', :immediately
   end
 
