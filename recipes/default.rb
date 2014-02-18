@@ -1,5 +1,10 @@
 include_recipe 'build-essential'
 
+case node['platform_family']
+when 'debian'
+  package 'pkg-config'
+end
+
 unimrcp_name = "uni-ast-package-#{node['unimrcp']['version']}"
 work_dir = Chef::Config['file_cache_path'] || '/tmp'
 node.default['unimrcp']['src_dir'] = unimrcp_src_dir = "#{work_dir}/#{unimrcp_name}"
