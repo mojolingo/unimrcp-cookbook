@@ -1,12 +1,8 @@
-include_recipe 'apt'
+include_recipe 'build-essential'
 
-case node['platform']
-when "ubuntu", "debian"
-  node['unimrcp']['packages'].each do |pkg|
-    package pkg do
-      options "--force-yes"
-    end
-  end
+case node['platform_family']
+when 'debian'
+  package 'pkg-config'
 end
 
 unimrcp_name = "uni-ast-package-#{node['unimrcp']['version']}"
@@ -29,7 +25,7 @@ end
 
 if node['unimrcp']['install_pocketsphinx']
   include_recipe 'unimrcp::pocketsphinx'
-  configure_line << " --enable-pocketsphinx-plugin --with-pocketsphinx=#{File.join(work_dir, 'pocketsphinx-0.5.99')} --with-sphinxbase=#{File.join(work_dir, 'sphinxbase-0.4.99')}"
+  configure_line << " --enable-pocketsphinx-plugin --with-pocketsphinx=#{File.join(work_dir, 'pocketsphinx-0.8')} --with-sphinxbase=#{File.join(work_dir, 'sphinxbase-0.8')}"
   check_installed << " && test -f #{target_dir}/plugin/mrcppocketsphinx.so"
 end
 
@@ -91,8 +87,10 @@ end
 
 if node['unimrcp']['install_pocketsphinx']
   remote_file "#{work_dir}/communicator.tar.gz" do
-    source "http://www.unimrcp.org/dependencies/communicator_semi_6000_20080321.tar.gz"
+    source "http://files.freeswitch.org/downloads/libs/communicator_semi_6000_20080321.tar.gz"
     not_if "test -d #{target_dir}/data/Communicator_semi_40.cd_semi_6000"
+    retries 10
+    checksum '504941aa35924af84cee1bf61914d923'
     notifies :run, 'bash[extract_pocketsphinx_communicator]', :immediately
   end
 
