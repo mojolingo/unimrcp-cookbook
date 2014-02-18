@@ -1,4 +1,6 @@
 # develop
+
+# 0.2.0
   * Support CentOS
   * Use updated PocketSphinx
 
