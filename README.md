@@ -4,7 +4,7 @@ This Chef cookbook installs UniMRCP from source and configures its basic setting
 
 # Requirements
 
-Tested on Ubuntu 12.04 and Debian 7.1.
+Tested on Ubuntu 12.04, Debian 7.1 & CentOS 6.5.
 
 # Usage
 
