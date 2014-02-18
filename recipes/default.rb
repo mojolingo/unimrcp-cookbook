@@ -1,13 +1,4 @@
-include_recipe 'apt'
-
-case node['platform']
-when "ubuntu", "debian"
-  node['unimrcp']['packages'].each do |pkg|
-    package pkg do
-      options "--force-yes"
-    end
-  end
-end
+include_recipe 'build-essential'
 
 unimrcp_name = "uni-ast-package-#{node['unimrcp']['version']}"
 work_dir = Chef::Config['file_cache_path'] || '/tmp'
