@@ -1,4 +1,7 @@
 # develop
+
+# 1.0.0
+  * API stability
   * Unlock build-essential dependency for wider compatability
 
 # 0.2.0
