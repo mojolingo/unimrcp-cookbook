@@ -1,4 +1,5 @@
 # develop
+  * Unlock build-essential dependency for wider compatability
 
 # 0.2.0
   * Support CentOS

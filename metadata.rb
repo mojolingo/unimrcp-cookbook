@@ -8,7 +8,7 @@ version          '0.2.0'
 
 recipe 'unimrcp', 'Install UniMRCP'
 
-depends 'build-essential', '~> 1.4'
+depends 'build-essential'
 
 supports 'debian', '>= 7.1'
 supports 'ubuntu', '>= 10.04'
