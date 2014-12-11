@@ -66,6 +66,7 @@ end
 bash "install_sofia" do
   user "root"
   cwd "#{unimrcp_src_dir}/unimrcp/libs/sofia-sip"
+  environment 'CFLAGS' => '-fno-aggressive-loop-optimizations'
   code <<-EOH
     ./configure --with-glib=no
     make
