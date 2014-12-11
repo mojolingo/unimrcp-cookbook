@@ -30,7 +30,7 @@ if node['unimrcp']['install_pocketsphinx']
 end
 
 remote_file "#{work_dir}/#{unimrcp_name}.tar.gz" do
-  source "http://unimrcp.googlecode.com/files/#{unimrcp_name}.tar.gz"
+  source "http://www.unimrcp.org/project/component-view/uni-ast-package-#{node['unimrcp']['version'].gsub('.', '-')}-tar-gz/download"
   not_if check_installed
 end
 
