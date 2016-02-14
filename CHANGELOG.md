@@ -1,4 +1,6 @@
 # develop
+  * Update UniMRCP to 1.2.0 by default
+  * Fetch UniMRCP from new download source
   * Fetch flite from a more stable source
 
 # 1.0.0
