@@ -1,4 +1,5 @@
 # develop
+  * Fetch flite from a more stable source
 
 # 1.0.0
   * API stability
